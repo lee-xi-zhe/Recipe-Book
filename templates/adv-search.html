@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <div class="container m-4">
+        <h2 class="text-center">Advanced Search</h2>
+        <p>Search results are underneath the search options</p>
+    </div>
+    <div class="container border border-2 rounded p-4">
+        <form id="search-recipe-form" action="/adv-search" method="post">
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search-name" class="form-label">Recipe Name: </label>
+                <input type="text" name="search-name" id="search-name" class="form-control" placeholder="e.g. Hainanese Chicken Rice" maxlength="100">
+            </div>
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search-country" class="form-label">Country: </label>
+                <input type="text" name="search-country" id="search-country" class="form-control" placeholder="e.g. Singapore" maxlength="100">
+            </div>
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search-difficulty" class="form-label">Difficulty: </label><br>
+                <select name="search-difficulty" id="search-difficulty">
+                    <option value=""></option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search-time" class="form-label">Time: </label>
+                <input type="text" name="search-time" id="search-time" class="form-control" placeholder="e.g. 2 Hours 30 Minutes" maxlength="100">
+            </div>
+            <div class="mx-2 p-2">
+                <label form="create-recipe-form" for="search-size" class="form-label">Serves: </label><br>
+                <select name="search-size" id="input-size">
+                    <option value=""></option>
+                    <option value="Serves 1-2">1-2</option>
+                    <option value="Serves 2-5">2-5</option>
+                    <option value="Serves 5-8">5-8</option>
+                    <option value="Serves 8+">8+</option>
+                </select>
+            </div>
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search-ingredients" class="form-label">Ingredients: </label>
+                <input type="text" name="search-ingredients" id="search-ingredients" class="form-control" placeholder="e.g. 1. 500g Chicken" maxlength="100">
+            </div>
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search-instructions" class="form-label">Instructions: </label>
+                <input type="text" name="search-instructions" id="search-instructions" class="form-control" placeholder="e.g. 1. Cook Rice" maxlength="100">
+            </div>
+            <div class="mx-2 p-2">
+                <input type="submit" value="Search">
+            </div>
+        </form>
+    </div>
+    <br>
+    {% if recipes %}
+        <div class="container border border-2 rounded">
+            <table class="table table-hover my-3">
+                <thead>
+                    <th class="table-light">Name</th>
+                    <th class="table-light">Country of Origin</th>
+                    <th class="table-light">Time Required</th>
+                    <th class="table-light">Portion Size</th>
+                    <th class="table-light">Difficulty</th>
+                    <th class="table-light">Edit</th>
+                    <th class="table-light">Delete</th>
+                </thead>
+                <tbody>
+                    {% for recipe in recipes %}
+                        <tr>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["name"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["country"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["time"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["size"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["difficulty"] }}</a></td>
+                            <td><a href="/edit/{{ recipe["id"] }}" class="btn btn-primary">Edit</a></td>
+                            <td><a href="/delete/{{ recipe["id"] }}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

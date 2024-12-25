@@ -1,0 +1,26 @@
+main .form-control {
+    /* Center form controls */
+    display: inline-block;
+}
+
+td a {
+    text-decoration: none;
+    color: black;
+}
+
+textarea {
+    overflow-y: scroll;
+}
+
+hr{
+    border-top: 2px solid;
+}
+
+.recipe-img {
+    height: 40%;
+    width: 40%;
+}
+
+.preserve-newline {
+    white-space: pre-line;
+}

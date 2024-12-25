@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Recipe
+{% endblock %}
+
+{% block main %}
+    <div class="container m-4">
+        <h2 class="text-center">Create a Recipe</h2>
+    </div>
+    <div class="container border border-2 rounded p-4">
+        <form id="create-recipe-form" action="/create" method="post" enctype="multipart/form-data">
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-name" class="form-label">Name of Recipe: </label>
+                <input type="text" name="input-name" id="input-name" class="form-control" placeholder="e.g. Hainanese Chicken Rice" maxlength="100" required>
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-image" class="form-label">(Optional) Image of Food: </label>
+                <input type="file" name="input-image" id="input-image" class="form-control" accept="image/*">
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-country" class="form-label">Country of Origin: </label>
+                <input type="text" name="input-country" id="input-country" class="form-control" placeholder="e.g. Singapore" maxlength="100" required>
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-time" class="form-label">Time Required: </label>
+                <input type="text" name="input-time" id="input-time" class="form-control" placeholder="e.g. 2 Hours 30 Minutes" maxlength="100" required>
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-size" class="form-label">Serves: </label>
+                <select name="input-size" id="input-size">
+                    <option value="Serves 1-2">1-2</option>
+                    <option value="Serves 2-5">2-5</option>
+                    <option value="Serves 5-8">5-8</option>
+                    <option value="Serves 8+">8+</option>
+                </select>
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-difficulty" class="form-label">Difficulty: </label>
+                <select name="input-difficulty" id="input-difficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-ingredients" class="form-label">Ingredients: </label><br>
+                <textarea name="input-ingredients" id="input-ingredients" form_id="create-recipe-form" class="form-control" placeholder="e.g. 1. 500g Rice"
+                          cols="125" rows="10" maxlength=500 required></textarea>
+            </div>
+            <div class="m-2 p-2">
+                <label form="create-recipe-form" for="input-instructions" class="form-label">Instructions: </label><br>
+                <textarea name="input-instructions" id="input-instructions" form_id="create-recipe-form" class="form-control" placeholder="e.g. 1. Cook rice"
+                          cols="125" rows="10" maxlength=3000 required></textarea>
+            </div>
+            <div class="m-2 p-2">
+                <input type="submit" value="Create Recipe">
+            </div>
+        </form>
+        <form id="create-cancel-form" action="/">
+            <div class="m-2 p-2">
+                <input type="submit" value="Cancel">
+            </div>
+        </form>
+    </div>
+{% endblock %}

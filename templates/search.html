@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <div class="container m-4">
+        <h2 class="text-center">Search for a Recipe</h2>
+        <p>Or try <a href="/adv-search">Advanced Search</a></p>
+    </div>
+    <div class="container border border-2 rounded p-4">
+        <form id="search-recipe-form" action="/search" method="post">
+            <div class="mx-2 p-2">
+                <label form="search-recipe-form" for="search" class="form-label">Search: </label>
+                <input type="text" name="search" id="search" class="form-control" placeholder="Search any category" maxlength="100" required>
+            </div>
+            <div class="mx-2 p-2">
+                <input type="submit" value="Search">
+            </div>
+        </form>
+    </div>
+    <br>
+    {% if recipes %}
+        <div class="container border border-2 rounded">
+            <table class="table table-hover my-3">
+                <thead>
+                    <th class="table-light">Name</th>
+                    <th class="table-light">Country of Origin</th>
+                    <th class="table-light">Time Required</th>
+                    <th class="table-light">Portion Size</th>
+                    <th class="table-light">Difficulty</th>
+                    <th class="table-light">Edit</th>
+                    <th class="table-light">Delete</th>
+                </thead>
+                <tbody>
+                    {% for recipe in recipes %}
+                        <tr>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["name"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["country"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["time"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["size"] }}</a></td>
+                            <td><a href="/recipe/{{ recipe["id"] }}">{{ recipe["difficulty"] }}</a></td>
+                            <td><a href="/edit/{{ recipe["id"] }}" class="btn btn-primary">Edit</a></td>
+                            <td><a href="/delete/{{ recipe["id"] }}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    {% endif %}
+{% endblock %}

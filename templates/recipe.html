@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ recipe["name"] }}
+{% endblock %}
+
+{% block main %}
+    <div class="container text-center">
+        <h2>{{ recipe["name"].capitalize() }}</h2>
+    </div>
+    <div class="container text-end">
+        <a href="/edit/{{ recipe["id"] }}" class="btn btn-primary">Edit</a>
+        <a href="/delete/{{ recipe["id"] }}" class="btn btn-danger">Delete</a>
+    </div>
+    {% if recipe["image_name"] %}
+        <div class="container recipe-img text-center">
+            <img alt="{{ top }}" class="border border-dark border-2 rounded img-fluid" src="../static/images/{{ recipe["image_name"] }}" title="{{ recipe["name"] }}">
+        </div>
+    {% endif %}
+    <div class="container text-start">
+        <p><strong>Country of Origin: </strong> {{ recipe["country"] }}</p>
+        <p><strong>Time Required: </strong>{{ recipe["time"] }}</p>
+        <p><strong>Portion Size: </strong>{{ recipe["size"] }}</p>
+        <p><strong>Difficulty: </strong>{{ recipe["difficulty"] }}</p>
+    </div>
+    <hr>
+    <div class="container text-start preserve-newline">
+        <h4>Ingredients</h4>
+        <p>{{ recipe["ingredients"] }}</p>
+    </div>
+    <hr>
+    <div class="container text-start preserve-newline">
+        <h4>Instructions</h4>
+        <p>{{ recipe["instructions"] }}</p>
+    </div>
+{% endblock %}
